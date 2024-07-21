@@ -52,7 +52,7 @@ const signUp=async(req,res)=>{
 const logout = async (req, res) => {
   res.clearCookie("token")
   try {
-    res.redirect('/http://localhost:3000')
+    res.redirect(process.env.FRONTEND_URL)
   } catch (error) {
     res.status(500).json(error.message)
   }
