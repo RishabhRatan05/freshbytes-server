@@ -16,9 +16,7 @@ const login=async(req,res)=>{
       if (!isValidUser) res.status(404).json("invalid credentials")
 
       const token = await genToken(email)
-      res.cookie("token", token, {
-        expires: new Date(Date.now() + 30 * 24 * 3600000),
-      })
+      res.cookie("token", token, { maxAge: 2 * 60 * 60 * 1000, httpOnly: true })
       res.status(201).json(user)
 
     } catch (error) { 
@@ -41,7 +39,8 @@ const signUp=async(req,res)=>{
         const token = await genToken(email)
 
         res.cookie("token", token, {
-          expires: new Date(Date.now() + 30 * 24 * 3600000),
+          maxAge: 2 * 60 * 60 * 1000,
+          httpOnly: true,
         })
         res.status(201).json(user)
         
