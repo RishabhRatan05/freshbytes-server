@@ -1,6 +1,6 @@
 const Category = require("../models/category")
 const Product = require("../models/product")
-const { uploadImage } = require("../utils/cloudinary")
+const { uploadImage } = require("../cloudinary")
 
 const getAllProducts = async (req, res) => {
   res.cookie("hello", "hhhheello")
