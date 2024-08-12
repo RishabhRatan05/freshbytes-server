@@ -10,7 +10,6 @@ cloudinary.config({
 const uploadImage = async (filePath) => {
   const imagePath = path.join(__dirname, "uploads", filePath)
   console.log("imgp", imagePath)
-  console.log()
   try {
     // Upload the image
     if (!imagePath) return null
