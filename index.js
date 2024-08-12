@@ -10,12 +10,18 @@ const userRoutes = require("./routes/user")
 const productRoutes = require("./routes/product")
 const authRoutes = require("./routes/auth")
 const categoryRoutes = require("./routes/category")
-const cartRoutes = require("./routes/cart")
+const orderRoutes = require("./routes/order")
 const connectDB = require("./utils/conn")
 
 app.use(express.json())
-// app.use(cors({ credentials: true, origin :"*" }))
-app.use(cors({ credentials: true, origin: process.env.FRONTEND_URL }))
+app.use(express.urlencoded({ extended: false }))
+app.use(
+  cors({
+    credentials: true,
+    origin: [process.env.FRONTEND_URL, "http://res.cloudinary.com"],
+  })
+)
+// app.use(cors({ credentials: true, origin: "*" }))
 app.use(CookieParser())
 
 connectDB()
@@ -23,7 +29,7 @@ app.use("/", authRoutes)
 app.use("/api/user", userRoutes)
 app.use("/api/product", productRoutes)
 app.use("/api/category", categoryRoutes)
-app.use("/api/cart", cartRoutes)
+app.use("/api/cart", orderRoutes)
 app.get("/api/getkey", (req, res) =>
   res.status(200).json({ key: process.env.RAZORPAY_API_KEY })
 )
