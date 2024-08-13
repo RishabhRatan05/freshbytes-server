@@ -17,7 +17,7 @@ const login = async (req, res) => {
 
     const token = await genToken(email)
     res.cookie("token", token, { maxAge: 2 * 60 * 60 * 1000, httpOnly: true })
-    res.status(201).json(user)
+    res.status(201).json({ user: user, token: token })
   } catch (error) {
     res.status(500).json(error.message)
   }

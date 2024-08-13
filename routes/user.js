@@ -1,12 +1,8 @@
-const express = require('express')
-const { getUser } = require('../controllers/user')
+const express = require("express")
+const { getUser } = require("../controllers/user")
 
 const app = express.Router()
 
+app.get("/", getUser)
 
-
-app.get('/',getUser)
-
-
-
-module.exports= app
+module.exports = app
